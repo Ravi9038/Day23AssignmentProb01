@@ -1,15 +1,11 @@
 public class Day23EmpWageComputation{
-	
-	
+
 	public static final int isFullTime = 1;
 	public static final int isPartTime = 2;
-	public static final int empRatePerHr = 20;
-	public static final int numOfWorkingDays = 2;
-	public static final int maxHrsInMonth = 10;
 
-	public void computeWage(){
+	public void computeWage(String cmpName, int empRatePerHr, int numOfWorkingDays, int maxHrsInMonth){
 
-		int  empHrs = 0;
+		int empHrs = 0;
 		int totalEmpHrs = 0;
 		int totalWorkingDays = 0;
 
@@ -17,7 +13,7 @@ public class Day23EmpWageComputation{
 
 			totalWorkingDays++;
 
-			int empCheck = (int) Math.floor(Math.random()*10)%3;
+			int empCheck = (int) Math.floor(Math.random()*10%3);
 
 			switch (empCheck){
 
@@ -29,25 +25,21 @@ public class Day23EmpWageComputation{
 					empHrs = 4;
 					break;
 
-				default :
+				default:
 					empHrs = 0;
-
 			}
-
 			totalEmpHrs += empHrs;
-			System.out.println("Day : "+totalWorkingDays + "Emp Hrs : "+empHrs);
+			System.out.println("Day : "+totalWorkingDays + " Emp Hr : "+empHrs);
+
 		}
-
 		int totalEmpWage = totalEmpHrs * empRatePerHr;
-
-		System.out.println("Total Emp Wage : "+totalEmpWage);
+		System.out.println("Toatal Emp Wage for company : "+cmpName + " is : "+totalEmpWage);
 	}
-
 	public static void main(String [] args){
 
-
-		UC7Refactor u7 = new UC7Refactor();
-		u7.computeWage();
+		UC8EmpWageCompany uc8 = new UC8EmpWageCompany();
+		uc8.computeWage("D-mart",20,2,10);
+		uc8.computeWage("Relince",10,4,20);
 
 	}
-}
+}	
