@@ -8,7 +8,7 @@ public class Day23EmpWageComputation{
 		int empHrs = 0;
 		int empWage = 0;
 
-		double empCheck = Math.floor(Math.random()*10) % 2;
+		int empCheck = (int) Math.floor(Math.random()*10) % 2;
 
 		if ( empCheck == isFullTime ){
 
