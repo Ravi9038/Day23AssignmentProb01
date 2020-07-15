@@ -1,45 +1,67 @@
 public class Day23EmpWageComputation{
 
-	public static final int isFullTime = 1;
-	public static final int isPartTime = 2;
+	public static final int isPartTime  = 1;
+	public static final int isFullTime  = 2;
 
-	public void computeWage(String cmpName, int empRatePerHr, int numOfWorkingDays, int maxHrsInMonth){
+	private final String company;
+	private final int empRatePerHrs;
+	private final int numOfWorkingDays;
+	private final int maxHrsPerMonth;
+	private int totalEmpWage;
 
-		int empHrs = 0;
-		int totalEmpHrs = 0;
-		int totalWorkingDays = 0;
+	public Day23EmpWageComputation(String company, int empRatePerHrs, int numOfWorkingDays, int maxHrsPerMonth){
 
-		while (totalEmpHrs <= maxHrsInMonth && totalWorkingDays < numOfWorkingDays){
+		this.company = company;
+		this.empRatePerHrs = numOfWorkingDays;
+		this.numOfWorkingDays = numOfWorkingDays;
+		this.maxHrsPerMonth = maxHrsPerMonth;
+	}
+
+	public void computeEmpWage(){
+
+		int empHrs = 0, totalEmpHrs = 0, totalWorkingDays = 0;
+
+		//computation
+
+		while (totalEmpHrs <= maxHrsPerMonth && totalWorkingDays < numOfWorkingDays){
 
 			totalWorkingDays++;
-
-			int empCheck = (int) Math.floor(Math.random()*10%3);
+			int empCheck = (int) Math.floor(Math.random()*10)%3;
 
 			switch (empCheck){
-
-				case isFullTime :
-					empHrs = 8;
-					break;
 
 				case isPartTime :
 					empHrs = 4;
 					break;
-
-				default:
+				case isFullTime :
+					empHrs = 8;
+					break;
+				default :
 					empHrs = 0;
 			}
 			totalEmpHrs += empHrs;
-			System.out.println("Day : "+totalWorkingDays + " Emp Hr : "+empHrs);
-
+			System.out.println("Day : "+totalWorkingDays + "Emp Hr : " + empHrs);
 		}
-		int totalEmpWage = totalEmpHrs * empRatePerHr;
-		System.out.println("Toatal Emp Wage for company : "+cmpName + " is : "+totalEmpWage);
+
+		totalEmpWage =  totalEmpHrs + empRatePerHrs;
 	}
+
+	//@override
+	public String toString(){
+
+		return "Total Emp Wage For Company : "+company + " is : "+totalEmpWage;
+	}
+
 	public static void main(String [] args){
 
-		UC8EmpWageCompany uc8 = new UC8EmpWageCompany();
-		uc8.computeWage("D-mart",20,2,10);
-		uc8.computeWage("Relince",10,4,20);
+		UC9SaveTheTotalWageCompany dmart = new UC9SaveTheTotalWageCompany("D-mart", 20, 2, 10);
+		UC9SaveTheTotalWageCompany relince = new UC9SaveTheTotalWageCompany("Relince", 10, 4, 20);
+		dmart.computeEmpWage();
+		System.out.println(dmart);
+
+		relince.computeEmpWage();
+		System.out.println(relince);
+
 
 	}
-}	
+}
