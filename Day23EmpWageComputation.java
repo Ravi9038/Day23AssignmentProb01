@@ -2,14 +2,22 @@ public class Day23EmpWageComputation{
 
 	public static void main(String [] args){
 
-		int randVal = (int) Math.floor(Math.random()* 10)%2;
+		int isFullTime = 1;
+		int empRatePerHr=20;
 
-		if (randVal == 1){
+		int empHrs = 0;
+		int empWage = 0;
 
-			System.out.println("Employee is present");
+		double empCheck = Math.floor(Math.random()*10) % 2;
+
+		if ( empCheck == isFullTime ){
+
+			empHrs = 8;
 		}else{
+			empHrs = 0;
 
-			System.out.println("Employee is Absent");
 		}
-	}
+		empWage = empHrs * empRatePerHr;
+		System.out.println("Emp Wage "+ empWage);
+	}	
 }
